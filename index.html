@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BonusVault – Crypto Casino & Sportsbook Bonuses Compared</title>
+<meta name="description" content="Compare crypto casino and sportsbook welcome offers, licences and KYC rules. 18+ only. Not available where online gambling is prohibited.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b0d12; --panel:#12151d; --panel2:#181c26; --line:#252a37;
+    --text:#e9ecf2; --muted:#8e96a8; --gold:#f2c14e; --gold2:#d9a521;
+    --green:#3ddc97; --red:#ff6b6b;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;line-height:1.55}
+  a{color:var(--gold)}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+
+  .notice{background:#1a1408;border-bottom:1px solid #3a2c0a;color:#e8d29a;font-size:13px;text-align:center;padding:8px 16px}
+  .notice b{color:var(--gold)}
+
+  header{padding:22px 0;border-bottom:1px solid var(--line)}
+  .bar{display:flex;align-items:center;justify-content:space-between;gap:16px}
+  .logo{display:flex;align-items:center;gap:10px;font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:22px;letter-spacing:-.5px;text-decoration:none;color:var(--text)}
+  .logo svg{flex:none}
+  .logo span{color:var(--gold)}
+  nav a{color:var(--muted);text-decoration:none;font-size:14px;margin-left:22px}
+  nav a:hover{color:var(--text)}
+
+  .hero{padding:64px 0 40px}
+  .hero h1{font-family:"Space Grotesk",sans-serif;font-size:clamp(32px,5vw,52px);line-height:1.08;letter-spacing:-1.5px;max-width:720px}
+  .hero h1 em{font-style:normal;color:var(--gold)}
+  .hero p{color:var(--muted);font-size:17px;max-width:600px;margin-top:16px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+  .chip{border:1px solid var(--line);background:var(--panel);color:var(--muted);font-size:13px;padding:6px 12px;border-radius:999px}
+
+  h2{font-family:"Space Grotesk",sans-serif;font-size:26px;letter-spacing:-.5px;margin-bottom:6px}
+  .sub{color:var(--muted);font-size:14px;margin-bottom:22px}
+  section{padding:36px 0}
+
+  .list{display:flex;flex-direction:column;gap:14px}
+  .card{display:grid;grid-template-columns:56px 1.3fr 1.6fr 1fr 220px;gap:20px;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px 22px;position:relative}
+  .card.top{border-color:#5b4614;background:linear-gradient(180deg,#17140c, var(--panel) 60%)}
+  .rank{font-family:"Space Grotesk",sans-serif;font-size:28px;font-weight:700;color:#3a4152;text-align:center}
+  .card.top .rank{color:var(--gold)}
+  .name{font-family:"Space Grotesk",sans-serif;font-size:21px;font-weight:700}
+  .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+  .tag{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.4px;padding:3px 8px;border-radius:6px;background:var(--panel2);color:var(--muted);border:1px solid var(--line)}
+  .tag.g{color:var(--green);border-color:#1f4a37}
+  .label{font-size:11px;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);font-weight:600}
+  .offer{font-size:18px;font-weight:600;margin-top:2px}
+  .terms{font-size:12px;color:var(--muted);margin-top:4px}
+  .meta div{font-size:13px;margin-top:2px}
+  .meta div span{color:var(--muted)}
+  .cta{display:flex;flex-direction:column;gap:8px}
+  .code{display:flex;align-items:center;justify-content:space-between;border:1px dashed #4a4f5e;border-radius:10px;padding:8px 10px;font-size:13px}
+  .code b{font-family:"Space Grotesk",sans-serif;letter-spacing:1px;color:var(--gold)}
+  .copy{background:none;border:none;color:var(--muted);cursor:pointer;font-size:12px;font-weight:600}
+  .copy:hover{color:var(--text)}
+  .btn{display:block;text-align:center;background:var(--gold);color:#1a1300;font-weight:700;text-decoration:none;padding:12px;border-radius:10px;font-size:15px}
+  .btn:hover{background:var(--gold2)}
+  .badge{position:absolute;top:-10px;left:22px;background:var(--gold);color:#1a1300;font-size:11px;font-weight:700;padding:3px 10px;border-radius:999px;letter-spacing:.4px;text-transform:uppercase}
+  .card.soon{opacity:.55}
+  .btn.off{background:var(--panel2);color:var(--muted);pointer-events:none}
+
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .step{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px}
+  .step .n{font-family:"Space Grotesk",sans-serif;color:var(--gold);font-weight:700;font-size:14px}
+  .step h3{font-size:16px;margin:6px 0}
+  .step p{color:var(--muted);font-size:14px}
+
+  table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;font-size:14px}
+  th,td{padding:12px 14px;text-align:left;border-bottom:1px solid var(--line)}
+  th{background:var(--panel2);color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.5px}
+  tr:last-child td{border-bottom:none}
+  .y{color:var(--green);font-weight:600}
+
+  .info{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:10px;padding:18px 20px;color:var(--muted);font-size:14px}
+  .info b{color:var(--text)}
+
+  footer{border-top:1px solid var(--line);margin-top:30px;padding:32px 0 48px;color:var(--muted);font-size:13px}
+  footer .row{display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between}
+  footer p{margin-top:10px;max-width:760px}
+  .age{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border:2px solid var(--red);color:var(--red);border-radius:50%;font-weight:700;font-size:13px}
+
+  .toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--gold);color:#1a1300;font-weight:700;padding:10px 18px;border-radius:10px;transition:transform .25s}
+  .toast.show{transform:translateX(-50%) translateY(0)}
+
+  @media (max-width:900px){
+    .card{grid-template-columns:40px 1fr;gap:12px 16px}
+    .card > .offerbox,.card > .meta,.card > .cta{grid-column:1 / -1}
+    .steps{grid-template-columns:1fr}
+    nav{display:none}
+    .tablewrap{overflow-x:auto}
+  }
+</style>
+</head>
+<body>
+
+<div class="notice"><b>18+ only.</b> This site is not intended for users in countries where online gambling is prohibited or where the listed casinos are not available. Gamble responsibly.</div>
+
+<header>
+  <div class="wrap bar">
+    <a class="logo" href="#">
+      <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><rect x="2" y="2" width="26" height="26" rx="7" fill="none" stroke="#f2c14e" stroke-width="2.4"/><circle cx="15" cy="15" r="5.5" fill="none" stroke="#f2c14e" stroke-width="2.4"/><path d="M15 9.5v-3M15 23.5v-3M9.5 15h-3M23.5 15h-3" stroke="#f2c14e" stroke-width="2.4" stroke-linecap="round"/></svg>
+      Bonus<span>Vault</span>
+    </a>
+    <nav>
+      <a href="#compare">Compare</a>
+      <a href="#how">How it works</a>
+      <a href="#kyc">KYC &amp; licences</a>
+      <a href="#responsible">Responsible gambling</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <div class="hero">
+    <h1>Crypto casino &amp; sportsbook bonuses, <em>compared side by side.</em></h1>
+    <p>Welcome offers, licences and KYC rules for the biggest crypto gambling sites, in one place. Use our codes to unlock each site's welcome offer.</p>
+    <div class="chips">
+      <span class="chip">Crypto deposits</span>
+      <span class="chip">Sportsbook + casino</span>
+      <span class="chip">Updated November 2026</span>
+    </div>
+  </div>
+
+  <section id="compare">
+    <h2>Top crypto casinos</h2>
+    <p class="sub">Offers can vary by country. The offer shown on the casino's own sign-up page always applies.</p>
+
+    <div class="list">
+
+      <!-- STAKE -->
+      <div class="card top">
+        <div class="badge">Top pick</div>
+        <div class="rank">1</div>
+        <div>
+          <div class="name">Stake</div>
+          <div class="tags"><span class="tag g">Sportsbook</span><span class="tag g">Casino</span><span class="tag">Crypto</span></div>
+        </div>
+        <div class="offerbox">
+          <div class="label">Welcome offer</div>
+          <div class="offer">200% first deposit bonus</div>
+          <div class="terms">Wagering requirements apply. New accounts only.</div>
+        </div>
+        <div class="meta">
+          <div><span>Licence:</span> Curaçao</div>
+          <div><span>KYC:</span> Level-based</div>
+        </div>
+        <div class="cta">
+          <div class="code">Use code <b>BONUSVAULT</b><button class="copy" data-code="BONUSVAULT">COPY</button></div>
+          <a class="btn" href="https://stake.com/?c=BONUSVAULT" target="_blank" rel="sponsored nofollow noopener">Claim bonus →</a>
+        </div>
+      </div>
+
+      <!-- SHUFFLE -->
+      <div class="card">
+        <div class="rank">2</div>
+        <div>
+          <div class="name">Shuffle</div>
+          <div class="tags"><span class="tag g">Sportsbook</span><span class="tag g">Casino</span><span class="tag">Crypto</span></div>
+        </div>
+        <div class="offerbox">
+          <div class="label">Welcome offer</div>
+          <div class="offer">200% first deposit match</div>
+          <div class="terms">Min. deposit $100. Wagering applies. Verification required before bonus.</div>
+        </div>
+        <div class="meta">
+          <div><span>Licence:</span> Curaçao</div>
+          <div><span>KYC:</span> Before bonus</div>
+        </div>
+        <div class="cta">
+          <div class="code">Use code <b>BONUSVAULT</b><button class="copy" data-code="BONUSVAULT">COPY</button></div>
+          <a class="btn" href="https://shuffle.com?r=BONUSVAULT" target="_blank" rel="sponsored nofollow noopener">Claim bonus →</a>
+        </div>
+      </div>
+
+      <!-- GAMDOM -->
+      <div class="card">
+        <div class="rank">3</div>
+        <div>
+          <div class="name">Gamdom</div>
+          <div class="tags"><span class="tag g">Sportsbook</span><span class="tag g">Casino</span><span class="tag">Esports</span></div>
+        </div>
+        <div class="offerbox">
+          <div class="label">Welcome offer</div>
+          <div class="offer">15% instant rakeback for 7 days</div>
+          <div class="terms">No wagering on rakeback. New accounts only.</div>
+        </div>
+        <div class="meta">
+          <div><span>Licence:</span> Anjouan</div>
+          <div><span>KYC:</span> On request</div>
+        </div>
+        <div class="cta">
+          <div class="code">Use code <b>DREAMBIG</b><button class="copy" data-code="DREAMBIG">COPY</button></div>
+          <a class="btn" href="https://gamdom.com/r/dreambig" target="_blank" rel="sponsored nofollow noopener">Claim bonus →</a>
+        </div>
+      </div>
+
+      <!-- ROOBET (placeholder) -->
+      <div class="card soon">
+        <div class="rank">4</div>
+        <div>
+          <div class="name">Roobet</div>
+          <div class="tags"><span class="tag g">Sportsbook</span><span class="tag g">Casino</span><span class="tag">Crypto</span></div>
+        </div>
+        <div class="offerbox">
+          <div class="label">Welcome offer</div>
+          <div class="offer">Coming soon</div>
+          <div class="terms">We're finalising our partnership.</div>
+        </div>
+        <div class="meta">
+          <div><span>Licence:</span> Curaçao</div>
+          <div><span>KYC:</span> On request</div>
+        </div>
+        <div class="cta">
+          <a class="btn off" href="#">Coming soon</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="how">
+    <h2>How to claim a bonus</h2>
+    <p class="sub">Takes about two minutes.</p>
+    <div class="steps">
+      <div class="step"><div class="n">01</div><h3>Pick a casino</h3><p>Compare the offers above and choose the one that fits how you play.</p></div>
+      <div class="step"><div class="n">02</div><h3>Sign up with our code</h3><p>Click "Claim bonus". The code is added automatically, or paste it in the referral field.</p></div>
+      <div class="step"><div class="n">03</div><h3>Make your first deposit</h3><p>Deposit with crypto and activate the welcome offer from the promotions page.</p></div>
+    </div>
+  </section>
+
+  <section id="kyc">
+    <h2>KYC &amp; licences at a glance</h2>
+    <p class="sub">Most crypto casinos can ask for ID verification at any time, especially before larger withdrawals.</p>
+    <div class="tablewrap">
+    <table>
+      <tr><th>Casino</th><th>Licence</th><th>Sportsbook</th><th>Crypto</th><th>KYC</th></tr>
+      <tr><td>Stake</td><td>Curaçao</td><td class="y">✓</td><td class="y">✓</td><td>Level-based verification</td></tr>
+      <tr><td>Shuffle</td><td>Curaçao</td><td class="y">✓</td><td class="y">✓</td><td>Required before bonus</td></tr>
+      <tr><td>Gamdom</td><td>Anjouan</td><td class="y">✓</td><td class="y">✓</td><td>On request</td></tr>
+      <tr><td>Roobet</td><td>Curaçao</td><td class="y">✓</td><td class="y">✓</td><td>On request</td></tr>
+    </table>
+    </div>
+  </section>
+
+  <section>
+    <div class="info">
+      <b>Availability:</b> Each casino blocks players from countries where it is not licensed or where online gambling is restricted. Check the "restricted countries" list in the casino's terms before signing up. Using a VPN to get around these restrictions breaks the casinos' rules and can lead to closed accounts and lost winnings, so we don't recommend it.
+    </div>
+  </section>
+
+  <section id="responsible">
+    <h2>Gamble responsibly</h2>
+    <p class="sub">Gambling should be entertainment, not a way to make money.</p>
+    <div class="info">
+      Set a budget before you play and never chase losses. If gambling stops being fun, take a break and get support from
+      <a href="https://www.begambleaware.org" target="_blank" rel="noopener">BeGambleAware.org</a> or
+      <a href="https://www.gamblersanonymous.org" target="_blank" rel="noopener">Gamblers Anonymous</a>.
+      Most casinos also offer deposit limits and self-exclusion in your account settings.
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="row">
+      <div>
+        <div style="display:flex;align-items:center;gap:12px"><span class="age">18+</span><b style="color:var(--text)">BonusVault</b></div>
+        <p><b>Affiliate disclosure:</b> BonusVault may earn a commission when you sign up through our links. This doesn't cost you anything extra and doesn't affect which offers you get.</p>
+        <p>BonusVault is an independent comparison site and does not offer gambling services. Content is intended only for adults in jurisdictions where online gambling is legal and where the listed operators accept players. Bonus terms are set by each operator and can change at any time.</p>
+      </div>
+    </div>
+    <p style="margin-top:22px">© 2026 BonusVault</p>
+  </div>
+</footer>
+
+<div class="toast" id="toast">Code copied</div>
+
+<script>
+  document.querySelectorAll('.copy').forEach(function(b){
+    b.addEventListener('click', function(){
+      var code = b.getAttribute('data-code');
+      var t = document.getElementById('toast');
+      function done(){ t.textContent = 'Code ' + code + ' copied'; t.classList.add('show'); setTimeout(function(){t.classList.remove('show')}, 1600); }
+      try { navigator.clipboard.writeText(code).then(done, done); } catch(e){ done(); }
+    });
+  });
+</script>
+</body>
+</html>
