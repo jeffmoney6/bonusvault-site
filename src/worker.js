@@ -48,6 +48,11 @@ export default {
       return new Response(body, { headers: { "content-type": "application/xml;charset=UTF-8" } });
     }
 
+    // Google Search Console verification file – must be reachable for Google's checker.
+    if (/^\/google[0-9a-f]+\.html$/.test(url.pathname)) {
+      return env.ASSETS.fetch(request);
+    }
+
     const country = request.cf && request.cf.country;
     if (!isSearchBot(request) && (!country || BLOCKED.has(country))) {
       return new Response(BLOCK_PAGE, {
