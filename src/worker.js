@@ -17,10 +17,39 @@ h1{font-size:24px;margin-bottom:8px}p{color:#8e96a8;max-width:440px}</style></he
 <body><div><h1>Not available in your region</h1>
 <p>BonusVault is not available in your country. The casinos we compare do not accept players from your location.</p></div></body></html>`;
 
+const PAGES = ["/", "/stake/", "/shuffle/", "/gamdom/", "/roobet/"];
+
+// Search engine crawlers (Google, Bing) crawl from the US, which is blocked.
+// Let them through so the site can be indexed – checked by both user agent
+// and the network they come from, so a normal visitor can't fake it.
+function isSearchBot(request) {
+  const ua = request.headers.get("user-agent") || "";
+  const org = (request.cf && request.cf.asOrganization) || "";
+  if (/Googlebot|Google-InspectionTool|AdsBot-Google|Storebot-Google/i.test(ua) && /Google/i.test(org)) return true;
+  if (/bingbot|BingPreview/i.test(ua) && /Microsoft/i.test(org)) return true;
+  return false;
+}
+
 export default {
   async fetch(request, env) {
+    const url = new URL(request.url);
+    const origin = url.origin;
+
+    if (url.pathname === "/robots.txt") {
+      return new Response(`User-agent: *\nAllow: /\n\nSitemap: ${origin}/sitemap.xml\n`, {
+        headers: { "content-type": "text/plain;charset=UTF-8" }
+      });
+    }
+    if (url.pathname === "/sitemap.xml") {
+      const today = new Date().toISOString().slice(0, 10);
+      const body = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
+        PAGES.map(p => `  <url><loc>${origin}${p}</loc><lastmod>${today}</lastmod></url>`).join("\n") +
+        `\n</urlset>\n`;
+      return new Response(body, { headers: { "content-type": "application/xml;charset=UTF-8" } });
+    }
+
     const country = request.cf && request.cf.country;
-    if (!country || BLOCKED.has(country)) {
+    if (!isSearchBot(request) && (!country || BLOCKED.has(country))) {
       return new Response(BLOCK_PAGE, {
         status: 451,
         headers: { "content-type": "text/html;charset=UTF-8" }
