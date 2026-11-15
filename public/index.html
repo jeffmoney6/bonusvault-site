@@ -116,6 +116,12 @@
   td:first-child{font-weight:600}
   .y{color:var(--green);font-weight:700}
 
+  .guides{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .gcard{display:block;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px;text-decoration:none;color:var(--text);transition:border-color .2s}
+  .gcard:hover{border-color:#3a4256}
+  .gcard b{display:block;font-family:"Space Grotesk",sans-serif;font-size:18px;margin-bottom:4px}
+  .gcard span{color:var(--gold);font-size:13.5px}
+  @media (max-width:960px){.guides{grid-template-columns:1fr}}
   /* FAQ */
   .faq{display:grid;gap:10px}
   details{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
@@ -163,6 +169,7 @@
     <nav>
       <a href="#compare">Compare</a>
       <a href="#how">How it works</a>
+      <a href="#guides">Guides</a>
       <a href="#faq">FAQ</a>
       <a data-casino="stake" href="stake/">Stake</a>
       <a data-casino="roobet" href="roobet/">Roobet</a>
@@ -363,6 +370,13 @@
           <tr data-casino="roobet"><td>Roobet</td><td>Curaçao</td><td class="y">✓</td><td class="y">✓</td><td>On request</td><td>20% cashback, 7 days</td></tr>
         </table>
       </div>
+    </div>
+  </section>
+
+  <section id="guides" style="padding-top:20px">
+    <div class="wrap">
+      <div class="head"><div><h2>Guides &amp; comparisons</h2><p class="sub">Learn how crypto casino bonuses work before you sign up.</p></div></div>
+      <div class="guides"><a class="gcard" href="best-crypto-sportsbooks/"><b>Best crypto sportsbooks</b><span>Read guide →</span></a><a data-needs="gamdom,roobet" class="gcard" href="no-wagering-casino-bonuses/"><b>No wagering bonuses</b><span>Read guide →</span></a><a data-needs="stake,roobet" class="gcard" href="stake-vs-roobet/"><b>Stake vs Roobet</b><span>Read guide →</span></a><a data-needs="stake,shuffle" class="gcard" href="stake-vs-shuffle/"><b>Stake vs Shuffle</b><span>Read guide →</span></a><a data-needs="gamdom" class="gcard" href="rakeback-explained/"><b>What is rakeback?</b><span>Read guide →</span></a><a class="gcard" href="crypto-casino-kyc/"><b>Crypto casino KYC</b><span>Read guide →</span></a></div>
     </div>
   </section>
 

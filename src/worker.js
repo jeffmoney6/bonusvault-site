@@ -29,7 +29,8 @@ const CASINO_BLOCKED = {
 const ONTARIO_BLOCKED = new Set(["stake", "shuffle", "roobet"]);
 
 const CASINOS = Object.keys(CASINO_BLOCKED);
-const PAGES = ["/", "/stake/", "/shuffle/", "/gamdom/", "/roobet/"];
+const GUIDE_NEEDS = {"stake-vs-roobet": ["stake", "roobet"], "stake-vs-shuffle": ["stake", "shuffle"], "no-wagering-casino-bonuses": ["gamdom", "roobet"], "rakeback-explained": ["gamdom"]};
+const PAGES = ["/", "/stake/", "/shuffle/", "/gamdom/", "/roobet/", "/best-crypto-sportsbooks/", "/no-wagering-casino-bonuses/", "/stake-vs-roobet/", "/stake-vs-shuffle/", "/rakeback-explained/", "/crypto-casino-kyc/"];
 
 const BLOCK_PAGE = `<!DOCTYPE html>
 <html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
@@ -97,6 +98,9 @@ export default {
     // Casino page: only for countries that casino accepts.
     const m = path.match(/^\/(stake|shuffle|gamdom|roobet)(\/|\/index\.html)?$/);
     if (m && !allowed.includes(m[1])) return blocked();
+    // Guide pages tied to specific casinos: show only if at least one is allowed.
+    const gm = path.match(/^\/([a-z-]+)(\/|\/index\.html)?$/);
+    if (gm && GUIDE_NEEDS[gm[1]] && !GUIDE_NEEDS[gm[1]].some(c => allowed.includes(c))) return blocked();
 
     const res = await env.ASSETS.fetch(request);
     const type = res.headers.get("content-type") || "";
