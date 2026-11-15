@@ -17,13 +17,15 @@ h1{font-size:24px;margin-bottom:8px}p{color:#8e96a8;max-width:440px}</style></he
 <body><div><h1>Not available in your region</h1>
 <p>BonusVault is not available in your country. The casinos we compare do not accept players from your location.</p></div></body></html>`;
 
-export async function onRequest(context) {
-  const country = context.request.cf && context.request.cf.country;
-  if (country && BLOCKED.has(country)) {
-    return new Response(BLOCK_PAGE, {
-      status: 451,
-      headers: { "content-type": "text/html;charset=UTF-8" }
-    });
+export default {
+  async fetch(request, env) {
+    const country = request.cf && request.cf.country;
+    if (!country || BLOCKED.has(country)) {
+      return new Response(BLOCK_PAGE, {
+        status: 451,
+        headers: { "content-type": "text/html;charset=UTF-8" }
+      });
+    }
+    return env.ASSETS.fetch(request);
   }
-  return context.next();
-}
+};
