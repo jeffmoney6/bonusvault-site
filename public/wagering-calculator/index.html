@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wagering Requirement Calculator – How Much Do You Need to Bet?</title>
+<meta name="description" content="Free casino wagering requirement calculator. Enter your bonus, deposit and wagering (e.g. 40x) to see how much you need to bet and the expected cost.">
+<meta property="og:title" content="Wagering Requirement Calculator – How Much Do You Need to Bet?">
+<meta property="og:description" content="Free casino wagering requirement calculator. Enter your bonus, deposit and wagering (e.g. 40x) to see how much you need to bet and the expected cost.">
+<meta property="og:type" content="article">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/review.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How do I calculate a wagering requirement?", "acceptedAnswer": {"@type": "Answer", "text": "Multiply the bonus amount by the wagering multiplier. If wagering applies to deposit and bonus, add them together first, then multiply."}}, {"@type": "Question", "name": "What does 40x wagering mean?", "acceptedAnswer": {"@type": "Answer", "text": "You must bet 40 times the bonus amount (or deposit + bonus, depending on the terms) before you can withdraw it."}}, {"@type": "Question", "name": "Do all games count towards wagering?", "acceptedAnswer": {"@type": "Answer", "text": "Not always. Many casinos count slots at 100% but table games, live casino or sports at a lower rate, or exclude some games entirely. Check the bonus terms."}}, {"@type": "Question", "name": "Is a bonus with wagering worth it?", "acceptedAnswer": {"@type": "Answer", "text": "It can be if you plan to play anyway, but the expected cost of the wagering can exceed the bonus value on high-edge games."}}]}</script>
+</head>
+<body>
+<div class="notice"><b>18+ only.</b> Not intended for users in countries where online gambling is prohibited or where the listed casinos do not accept players. Gamble responsibly.</div>
+<header><div class="wrap wide bar">
+<a class="logo" href="../"><svg width="28" height="28" viewBox="0 0 30 30" aria-hidden="true"><rect x="2" y="2" width="26" height="26" rx="7" fill="none" stroke="#f5c451" stroke-width="2.4"/><circle cx="15" cy="15" r="5.5" fill="none" stroke="#f5c451" stroke-width="2.4"/><path d="M15 9.5v-3M15 23.5v-3M9.5 15h-3M23.5 15h-3" stroke="#f5c451" stroke-width="2.4" stroke-linecap="round"/></svg>Bonus<span>Vault</span></a>
+<nav><a class="home" href="../">All offers</a><a data-casino="stake" href="../stake/">Stake</a><a data-casino="shuffle" href="../shuffle/">Shuffle</a><a data-casino="gamdom" href="../gamdom/">Gamdom</a><a data-casino="roobet" href="../roobet/">Roobet</a></nav>
+</div></header>
+<main class="wrap">
+<div class="crumbs"><a href="../">BonusVault</a> › Wagering calculator</div>
+<h1>Wagering requirement <em>calculator</em></h1>
+<p class="lead">Enter your bonus details to see exactly how much you need to wager before a casino bonus can be withdrawn – and roughly what it's likely to cost you on average.</p>
+<p class="updated">Last checked: November 2026</p>
+<style>
+.calc{background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid rgba(245,196,81,.4);border-radius:18px;padding:24px;margin:24px 0}
+.calc .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.calc label{display:block;font-size:13px;color:var(--muted);font-weight:600;margin-bottom:6px}
+.calc input,.calc select{width:100%;background:#0b0e14;border:1px solid var(--line);border-radius:10px;color:var(--text);padding:12px;font-size:16px;font-family:inherit}
+.calc input:focus,.calc select:focus{outline:none;border-color:var(--gold)}
+.res{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
+.res div{background:#0b0e14;border:1px solid var(--line);border-radius:12px;padding:14px}
+.res span{display:block;font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;font-weight:600}
+.res b{display:block;font-family:"Space Grotesk",sans-serif;font-size:24px;color:var(--gold);margin-top:4px}
+@media(max-width:760px){.calc .row,.res{grid-template-columns:1fr}}
+</style>
+<div class="calc">
+  <div class="row">
+    <div><label for="wb">Bonus amount ($)</label><input id="wb" type="number" min="0" value="100"></div>
+    <div><label for="wd">Deposit amount ($)</label><input id="wd" type="number" min="0" value="50"></div>
+    <div><label for="wx">Wagering requirement (x)</label><input id="wx" type="number" min="0" value="40"></div>
+    <div><label for="wt">Wagering applies to</label><select id="wt"><option value="b">Bonus only</option><option value="db">Deposit + bonus</option></select></div>
+    <div><label for="we">House edge of games you play (%)</label><input id="we" type="number" min="0" step="0.1" value="3"></div>
+    <div><label for="wa">Average bet size ($)</label><input id="wa" type="number" min="0" step="0.1" value="1"></div>
+  </div>
+  <div class="res">
+    <div><span>Total to wager</span><b id="r1">$4,000</b></div>
+    <div><span>Expected cost</span><b id="r2">$120</b></div>
+    <div><span>Bets needed</span><b id="r3">4,000</b></div>
+  </div>
+  <p class="terms" style="margin-top:12px">Expected cost = total wagered × house edge. It's an average – real results vary a lot in both directions.</p>
+</div>
+<script>
+(function(){
+  var f=function(n){return n.toLocaleString('en-US',{maximumFractionDigits:0})};
+  function calc(){
+    var b=+document.getElementById('wb').value||0, d=+document.getElementById('wd').value||0,
+        x=+document.getElementById('wx').value||0, t=document.getElementById('wt').value,
+        e=(+document.getElementById('we').value||0)/100, a=+document.getElementById('wa').value||0;
+    var total=(t==='db'?(b+d):b)*x;
+    document.getElementById('r1').textContent='$'+f(total);
+    document.getElementById('r2').textContent='$'+f(total*e);
+    document.getElementById('r3').textContent=a>0?f(Math.ceil(total/a)):'–';
+  }
+  ['wb','wd','wx','wt','we','wa'].forEach(function(id){var el=document.getElementById(id);el.addEventListener('input',calc);el.addEventListener('change',calc)});
+  calc();
+})();
+</script>
+<h2>How wagering requirements work</h2>
+<p>A wagering requirement (also called playthrough or rollover) is the number of times you must bet a bonus before you can withdraw it. A $100 bonus with 40x wagering means $4,000 in total bets.</p>
+<p>Some casinos apply the requirement to the bonus only. Others apply it to the deposit <b>plus</b> the bonus, which doubles or triples the amount you need to wager. Always check which one applies.</p>
+<h3>Example</h3>
+<p>You deposit $50 and get a 200% bonus of $100 with 40x wagering on the bonus only: 100 × 40 = <b>$4,000</b> to wager. If the requirement were on deposit + bonus: (50 + 100) × 40 = <b>$6,000</b>.</p>
+<h2>Why the expected cost matters</h2>
+<p>Every game has a house edge. On average, the casino keeps that percentage of everything you bet. Wagering $4,000 on games with a 3% edge has an expected cost of about $120 – more than the $100 bonus. On lower-edge games, the same wagering costs less. That's why the games you play (and which games count towards wagering) matter as much as the bonus size.</p>
+<h2>Bonuses without wagering</h2>
+<p>Rakeback and cashback offers usually come without wagering. See our guide to <a href="../no-wagering-casino-bonuses/">no wagering casino bonuses</a>, or work out rakeback with our <a href="../rakeback-calculator/">rakeback calculator</a>.</p>
+<h2>FAQ</h2>
+<details><summary>How do I calculate a wagering requirement?</summary><p>Multiply the bonus amount by the wagering multiplier. If wagering applies to deposit and bonus, add them together first, then multiply.</p></details><details><summary>What does 40x wagering mean?</summary><p>You must bet 40 times the bonus amount (or deposit + bonus, depending on the terms) before you can withdraw it.</p></details><details><summary>Do all games count towards wagering?</summary><p>Not always. Many casinos count slots at 100% but table games, live casino or sports at a lower rate, or exclude some games entirely. Check the bonus terms.</p></details><details><summary>Is a bonus with wagering worth it?</summary><p>It can be if you plan to play anyway, but the expected cost of the wagering can exceed the bonus value on high-edge games.</p></details>
+<h2>More guides</h2>
+<div class="others"><a href="../best-crypto-sportsbooks/"><b>Best crypto sportsbooks</b><span>Read guide →</span></a><a data-needs="gamdom,roobet" href="../no-wagering-casino-bonuses/"><b>No wagering bonuses</b><span>Read guide →</span></a><a data-needs="stake,roobet" href="../stake-vs-roobet/"><b>Stake vs Roobet</b><span>Read guide →</span></a><a data-needs="stake,shuffle" href="../stake-vs-shuffle/"><b>Stake vs Shuffle</b><span>Read guide →</span></a><a data-needs="gamdom" href="../rakeback-explained/"><b>What is rakeback?</b><span>Read guide →</span></a><a href="../crypto-casino-kyc/"><b>Crypto casino KYC</b><span>Read guide →</span></a><a href="../rakeback-calculator/"><b>Rakeback calculator</b><span>Read guide →</span></a><a href="../best-crypto-for-casino-deposits/"><b>Best crypto for deposits</b><span>Read guide →</span></a><a href="../how-to-deposit-crypto-casino/"><b>How to deposit crypto</b><span>Read guide →</span></a><a data-needs="gamdom,stake" href="../cs2-esports-betting-crypto/"><b>CS2 &amp; esports betting</b><span>Read guide →</span></a><a href="../house-edge-explained/"><b>What is house edge?</b><span>Read guide →</span></a></div>
+<div class="note" style="margin-top:34px"><b>Gamble responsibly.</b> Gambling should be entertainment, not a way to make money. Set a budget and use deposit limits. Need help? Visit <a href="https://www.begambleaware.org" target="_blank" rel="noopener">BeGambleAware.org</a> or <a href="https://www.gamblersanonymous.org" target="_blank" rel="noopener">Gamblers Anonymous</a>.</div>
+</main>
+<footer><div class="wrap">
+<p><b style="color:var(--text)">Affiliate disclosure:</b> BonusVault may earn a commission when you sign up through our links, at no extra cost to you. BonusVault is an independent comparison site and does not offer gambling services. Content is intended only for adults in jurisdictions where online gambling is legal and where the listed operators accept players. Bonus terms are set by each operator and can change at any time.</p>
+<p style="margin-top:14px">© 2026 BonusVault</p>
+</div></footer>
+<div class="toast" id="toast">Code copied</div>
+<script>
+document.querySelectorAll('.copy').forEach(function(b){b.addEventListener('click',function(){var code=b.getAttribute('data-code');var t=document.getElementById('toast');function done(){t.textContent='Code '+code.toUpperCase()+' copied';t.classList.add('show');setTimeout(function(){t.classList.remove('show')},1600)}try{navigator.clipboard.writeText(code).then(done,done)}catch(e){done()}})});
+</script>
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "4934c7cfb1ab488e8a4f767b491674e8"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>
