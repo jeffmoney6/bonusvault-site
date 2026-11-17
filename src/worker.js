@@ -30,7 +30,7 @@ const ONTARIO_BLOCKED = new Set(["stake", "shuffle", "roobet"]);
 
 const CASINOS = Object.keys(CASINO_BLOCKED);
 const GUIDE_NEEDS = {"stake-vs-roobet": ["stake", "roobet"], "stake-vs-shuffle": ["stake", "shuffle"], "no-wagering-casino-bonuses": ["gamdom", "roobet"], "rakeback-explained": ["gamdom"], "cs2-esports-betting-crypto": ["gamdom", "stake"]};
-const PAGES = ["/", "/stake/", "/shuffle/", "/gamdom/", "/roobet/", "/best-crypto-sportsbooks/", "/no-wagering-casino-bonuses/", "/stake-vs-roobet/", "/stake-vs-shuffle/", "/rakeback-explained/", "/crypto-casino-kyc/", "/wagering-calculator/", "/rakeback-calculator/", "/best-crypto-for-casino-deposits/", "/how-to-deposit-crypto-casino/", "/cs2-esports-betting-crypto/", "/house-edge-explained/"];
+const PAGES = ["/", "/stake/", "/shuffle/", "/gamdom/", "/roobet/", "/best-crypto-sportsbooks/", "/no-wagering-casino-bonuses/", "/stake-vs-roobet/", "/stake-vs-shuffle/", "/rakeback-explained/", "/crypto-casino-kyc/", "/wagering-calculator/", "/rakeback-calculator/", "/best-crypto-for-casino-deposits/", "/how-to-deposit-crypto-casino/", "/cs2-esports-betting-crypto/", "/house-edge-explained/", "/how-we-rate/", "/about/", "/responsible-gambling/"];
 
 const BLOCK_PAGE = `<!DOCTYPE html>
 <html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
