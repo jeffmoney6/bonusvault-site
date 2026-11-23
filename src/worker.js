@@ -79,6 +79,10 @@ export default {
         `\n</urlset>\n`;
       return new Response(body, { headers: { "content-type": "application/xml;charset=UTF-8" } });
     }
+    // IndexNow key file – must be reachable for Bing/IndexNow.
+    if (url.pathname === "/654af9cf2b84bc47db02d4ce176cecf4.txt") {
+      return env.ASSETS.fetch(request);
+    }
     // Google Search Console verification file – must be reachable for Google's checker.
     if (/^\/google[0-9a-f]+\.html$/.test(path)) {
       return env.ASSETS.fetch(request);
